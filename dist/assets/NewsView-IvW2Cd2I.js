@@ -1,0 +1,1 @@
+import{_ as o,L as t,h as n,o as s,i as r}from"./index-DT8k_mxp.js";const a={components:{VueSkeletonLoader:t}};function c(p,_,d,i,l,m){const e=r("VueSkeletonLoader");return s(),n(e,{type:"image@2"})}const f=o(a,[["render",c]]);export{f as default};
