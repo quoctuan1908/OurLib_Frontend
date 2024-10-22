@@ -1,4 +1,4 @@
-import '@fortawesome/fontawesome-free'
+// import '@fortawesome/fontawesome-free'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import mitt from 'mitt'
 import { createApp } from 'vue'
