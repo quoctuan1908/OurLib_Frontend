@@ -13,6 +13,8 @@ export default defineConfig({
   },
   server: {
     port: 3001,
+    listen: 80,
+    root: './dist/assets/',
     proxy: {
       '/api': {
         target: 'http://localhost:3000/',
