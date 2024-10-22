@@ -1,3 +1,4 @@
-export default {
-  publicPath: import.meta.env.NODE_ENV === 'production' ? '/OurLib/' : '/OurLib'
+// eslint-disable-next-line no-undef
+module.exports =  {
+  publicPath: import.meta.env.NODE_ENV === 'production' ? '/OurLib_Frontend/' : '/'
 }
