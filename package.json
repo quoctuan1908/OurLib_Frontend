@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.0.0",
-  "homepage": "https://quoctuan1908.github.io/Book_Manager/",
+  "homepage": "https://quoctuan1908.github.io/OurLib/",
   "private": true,
   "type": "module",
   "scripts": {
