@@ -1,0 +1,1 @@
+import{_ as e,c as o,o as t}from"./index-B5kzTMAY.js";const r={name:"RequestBookCard",props:["name"]};function s(a,n,c,p,_,l){return t(),o("div",null,"Hell")}const u=e(r,[["render",s]]);export{u as default};
