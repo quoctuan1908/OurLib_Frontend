@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free'
 import mitt from 'mitt'
 import { createApp } from 'vue'
 import App from './App.vue'

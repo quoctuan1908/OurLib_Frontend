@@ -26,24 +26,17 @@
         required
       />
     </div>
-    <div class="forgot-password-link-container">
-      <RouterLink to="#" class="forgot-password-link">Forgot password ?</RouterLink>
-    </div>
     <div id="message" :class="this.message ? `alert alert-warning` : ''">
       {{ this.message }}
     </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary" @click.prevent="handleLogin">Login</button>
-    <button type="button" @click.prevent="gotoSignUp">Sign up</button>
+    
+    <button type="submit" class="btn btn-primary" @click.prevent="handleLogin">Login</button><br/>
+    <span @click.prevent="gotoSignUp" class="link-primary link-custom">Don't have account? Sign up now</span>
   </form>
 </template>
 
 <script>
-import loginService from '@/services/login.service'
-import { RouterLink } from 'vue-router'
+import loginService from '@/services/login.service';
 
 export default {
   name: 'UserForm',
@@ -54,7 +47,7 @@ export default {
     }
   },
   components: {
-    RouterLink
+
   },
   methods: {
     async handleLogin() {
@@ -67,8 +60,9 @@ export default {
         localStorage.setItem('name', login.data.name)
         localStorage.setItem('id', login.data.id)
         localStorage.setItem('role', login.data.role)
+        localStorage.setItem('avatar', login.data.avatar)
         //change navbar
-        this.emitter.emit('logged', { isLogged: true, name: login.data.name })
+        this.emitter.emit('logged', { isLogged: true, name: login.data.name, avatar: login.data.avatar })
         this.$router.push({ name: 'home' })
       } else {
         this.message = login.data.message
@@ -110,5 +104,9 @@ export default {
 }
 .forgot-password-link:hover {
   color: cornflowerblue;
+}
+.link-custom:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 </style>

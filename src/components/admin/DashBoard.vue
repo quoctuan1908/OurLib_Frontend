@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container p-2">
     <div class="row">
       <DashBoardBlock :dashBoardTitle="`ACCOUNTS`" :data="this.numOfAccounts.num"></DashBoardBlock>
       <DashBoardBlock :dashBoardTitle="`BOOKS`" :data="this.numOfBooks.num"></DashBoardBlock>
@@ -7,7 +7,6 @@
         :dashBoardTitle="`PUBLISHERS`"
         :data="this.numOfPublishers.num"
       ></DashBoardBlock>
-      <DashBoardBlock :dashBoardTitle="`VIEWS TOTAL`"></DashBoardBlock>
     </div>
     <TrackingTable
       v-if="this.isLoaded"

@@ -1,0 +1,1 @@
+.help-center{padding:20px;display:flex;flex-direction:column;font-size:larger;max-width:800px;margin:auto}.text-center{text-align:center}.faq-list,.guidelines-list{background-color:#fff;margin:20px 0;padding-left:20px;list-style-type:none}.guidelines-title{padding:10px 0}h3{margin-top:15px}p{margin:5px 0}@media (max-width: 600px){.help-center{font-size:medium}}

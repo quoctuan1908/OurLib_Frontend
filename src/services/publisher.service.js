@@ -23,6 +23,15 @@ class PublisherService {
   async getQuantity() {
     return (await this.api.get('/quantity')).data
   }
+  async deletePublisher(id) {
+    return (await this.api.delete('/get-one/' + id)).data
+  }
+  async createPublisher(publisher) {
+    return (await this.api.post('/', publisher)).data
+  }
+  async changePublisherData(publisherData) {
+    return (await this.api.put('/get-one/' + publisherData._id, publisherData)).data
+  }
 }
 
 export default new PublisherService()

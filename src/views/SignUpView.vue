@@ -1,11 +1,11 @@
 <template>
   <div>
-    <SignupForm></SignupForm>
+    <SignupForm class="formCustom"></SignupForm>
   </div>
 </template>
 
 <script>
-import SignupForm from '@/components/SignupForm.vue'
+import SignupForm from '@/components/SignupForm.vue';
 
 export default {
   components: {

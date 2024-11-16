@@ -28,8 +28,9 @@
           v-for="(record, index) in this.filtedData"
           :key="record"
           @click="$emit('selectedUser', record)"
+          class="userTableRow "
         >
-          <td>{{ index + 1 }}</td>
+          <td >{{ index + 1 }}</td>
           <td>{{ record._id }}</td>
           <td :title="record.madocgia">{{ record.holot + ' ' + record.ten }}</td>
           <td>{{ record.taikhoan }}</td>
@@ -48,8 +49,7 @@ export default {
     return {
       tableCols: ['ID', 'Name', 'Username', 'Role'],
       filter: '',
-      filtedData: [],
-      count: 1
+      filtedData: []
     }
   },
   methods: {
@@ -68,4 +68,9 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.userTableRow:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+</style>

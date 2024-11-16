@@ -1,5 +1,5 @@
 <template>
-  <FormValidate @submit.prevent="func($event, this.bookData)" :validation-schema="bookSchema">
+  <FormValidate @submit.prevent="func(this.imgFile, this.bookData)" :validation-schema="bookSchema">
     <div class="mb-3">
       <label for="book-name" class="form-label">Name</label>
       <Field
@@ -72,7 +72,7 @@
     </div>
     <div>
       <label>Image</label> <br />
-      <Field type="file" class="form-control" id="file" name="file" />
+      <Field type="file" class="form-control" id="file" name="file" v-model="imgFile"/>
       <ErrorMessage name="file" class="error-feedback" />
     </div>
 
@@ -83,9 +83,9 @@
 </template>
 
 <script>
-import publisherService from '@/services/publisher.service'
-import { ErrorMessage, Field, Form as FormValidate } from 'vee-validate'
-import * as yup from 'yup'
+import publisherService from '@/services/publisher.service';
+import { ErrorMessage, Field, Form as FormValidate } from 'vee-validate';
+import * as yup from 'yup';
 
 export default {
   name: 'BookForm',
@@ -117,7 +117,14 @@ export default {
     return {
       bookData: {},
       publishersList: [],
-      bookSchema
+      bookSchema,
+      imgFile: null
+    }
+  },
+  watch: {
+      // eslint-disable-next-line no-unused-vars
+    data(newVal, oldVal) {
+      this.bookData = newVal
     }
   },
   methods: {
@@ -126,9 +133,6 @@ export default {
 
       console.log(this.publishersList)
     }
-  },
-  updated() {
-    this.bookData = this.data
   }
 }
 </script>

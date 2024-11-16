@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div>
-      <select @change="this.sortSelect" v-model="this.sortOption">
+      <select @change="this.sortSelect" v-model="this.sortOption" class="form-control">
         <option value="tensach">Order by Name</option>
         <option value="tacgia">Order by Writer Name</option>
         <option value="namxuatban">Order by Release Year</option>
@@ -69,9 +69,9 @@
 </template>
 
 <script>
-import BookList from '@/components/BookList.vue'
-import BookService from '@/services/book.service'
-import VueSkeletonLoader from 'vue3-skeleton-loader'
+import BookList from '@/components/BookList.vue';
+import BookService from '@/services/book.service';
+import VueSkeletonLoader from 'vue3-skeleton-loader';
 const booksList = []
 
 export default {
@@ -108,13 +108,22 @@ export default {
       console.log(index)
     },
     sortSelect() {
-      // eslint-disable-next-line no-unused-vars
-      this.books.sort((a, b) => `a.${this.sortOption}`.localeCompare(`b.${this.sortOption}`))
+      if (this.sortOption == 'tensach') {
+        this.books = this.books.sort((a, b) => a.tensach.localeCompare(b.tensach))
+      }
+      else if (this.sortOption == 'tacgia') {
+        this.books = this.books.sort((a, b) => a.tacgia.localeCompare(b.tacgia))
+      }
+      else {
+        this.books = this.books.sort((a, b) => a.namxuatban.localeCompare(b.namxuatban))
+      }
+      console.log(this.sortOption)
     }
   },
   mounted() {
     this.refreshList()
     this.checkRole()
+    this.sortSelect()
   }
 }
 </script>

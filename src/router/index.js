@@ -31,14 +31,6 @@ const router = createRouter({
       }
     },
     {
-      path: '/contact',
-      name: 'contact',
-      component: () => import('../views/ContactView.vue'),
-      meta: {
-        guest: true
-      }
-    },
-    {
       path: '/books',
       name: 'books',
       component: () => import('../views/BooksView.vue'),
@@ -55,26 +47,12 @@ const router = createRouter({
       }
     },
     {
-      path: '/news',
-      name: 'news',
-      component: () => import('../views/NewsView.vue'),
-      meta: {
-        guest: true
-      }
-    },
-    {
       path: '/blog',
       name: 'blog',
       component: () => import('../views/BlogView.vue'),
-      children: [
-        {
-          path: '/requests',
-          name: 'requests',
-          component: () => import('../components/RequestBookCard.vue')
-        }
-      ],
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        guest: true
       }
     },
     {
@@ -108,7 +86,15 @@ const router = createRouter({
       meta: {
         guest: true
       }
-    }
+    },
+    {
+      path: '/help',
+      name: 'help',
+      component: () => import('@/views/HelpView.vue'),
+      meta: {
+        guest: true
+      }
+    },
   ]
 })
 // eslint-disable-next-line no-unused-vars

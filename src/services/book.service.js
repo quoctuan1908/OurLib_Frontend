@@ -1,7 +1,7 @@
 import createApiClient from '@/services/api.service'
 
 class BookService {
-  constructor(baseURL = '/api/book') {
+  constructor(baseURL = 'http://localhost:3000/api/book') {
     this.api = createApiClient(baseURL)
   }
   async getAll() {

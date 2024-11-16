@@ -1,5 +1,5 @@
 <template>
-  <div class="border block">
+  <div class="border block2 ">
     <h3>{{ this.dashBoardTitle }}</h3>
     <p>{{ this.data }}</p>
   </div>
@@ -13,8 +13,8 @@ export default {
 </script>
 
 <style>
-.block {
-  width: 25%;
+.block2 {
+  width: 33%;
   text-align: center;
   background-color: white;
 }

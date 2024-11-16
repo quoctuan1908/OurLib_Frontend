@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import LoginForm from '@/components/LoginForm.vue'
+import LoginForm from '@/components/LoginForm.vue';
 
 export default {
   name: 'LoginView',
@@ -23,5 +23,6 @@ export default {
   width: 350px;
   margin: auto;
   margin-top: 5px;
+  min-height:600px;
 }
 </style>

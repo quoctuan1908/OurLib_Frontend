@@ -1,5 +1,5 @@
 <template>
-  <div class="m-4 dataBox d-flex">
+  <div class="m-4 dataBox rounded p-2">
     <!-- Warning: Sensitive Data Access Attention: You are about to access a database containing
     sensitive information. Please be aware of the following guidelines: Confidentiality: Do not
     share your access credentials with anyone. Data Protection: Ensure that you comply with all
@@ -8,11 +8,11 @@
     activity may be monitored and logged for security purposes. By proceeding, you acknowledge that
     you understand the risks and responsibilities associated with accessing this database.EHll -->
     <form v-if="this.dataProps" class="row align-items-center">
-      <div class="col-md-2">
-        <img :src="this.userData.anhdaidien" class="form-control" v-if="this.userData.anhdaidien" />
+      <div class="col-md-3">
+        <img :src="this.imageApiPath + this.userData.anhdaidien" class="bigAvatar" v-if="this.userData.anhdaidien" />
         <img src="../../assets/blankavatar.png" class="form-control" v-else />
       </div>
-      <div class="row col-md-9">
+      <div class="row col-md-8 ">
         <div class="col-md-6">
           <label>ID: </label>
           <input type="text" :value="this.userData._id" disabled class="form-control" />
@@ -22,24 +22,35 @@
           <input type="text" v-model="this.userData.ten" class="form-control" />
           <label>LastName: </label>
           <input type="text" v-model="this.userData.holot" class="form-control" />
+          <label>Gender: </label>
+          <select v-model="this.userData.phai" class="form-control">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
         </div>
         <div class="col-md-6">
           <label>Birthday: </label>
           <input type="date" v-model="this.userData.ngaysinh" class="form-control" />
-          <label>Gender: </label>
-          <input type="checkbox" :checked="this.userData.phai" v-model="this.userData.phai" />
-          <span>{{ this.userData.phai ? 'Male' : 'Female' }}</span> <br />
           <label>Email: </label>
           <input type="text" v-model="this.userData.email" class="form-control" />
           <label>Address: </label>
           <input type="text" v-model="this.userData.diachi" class="form-control" />
           <label>Phone: </label>
           <input type="text" v-model="this.userData.dienthoai" class="form-control" />
+          <label>Role: </label>
+          <select v-model="this.userData.role" class="form-control">
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
         </div>
       </div>
-      <div class="col-md-1">
+      <div class="col-md-1 text-center">
         <button class="btn btn-primary" @click.prevent="this.updateUser(this.userData)">
           Update
+        </button>
+        <button class="btn btn-danger" @click.prevent="this.deleteUser(this.userData._id)">
+          Delete 
         </button>
       </div>
     </form>
@@ -55,6 +66,9 @@ export default {
     },
     updateUser: {
       type: Function
+    },
+    deleteUser: {
+      type: Function
     }
   },
   watch: {
@@ -66,7 +80,8 @@ export default {
   },
   data() {
     return {
-      userData: {}
+      userData: {},
+      imageApiPath: 'http://localhost:3000/public/data/uploads/avatar/'
     }
   },
   methods: {
@@ -82,5 +97,8 @@ export default {
   min-height: 200px;
   border: none;
   background-color: white;
+}
+.bigAvatar {
+  width: 100%;
 }
 </style>

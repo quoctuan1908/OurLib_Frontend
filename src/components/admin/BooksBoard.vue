@@ -113,10 +113,10 @@
 </template>
 
 <script>
-import bookService from '@/services/book.service'
-import axios from 'axios'
-import BookCard from '../BookCard.vue'
-import BookForm from '../BookForm.vue'
+import bookService from '@/services/book.service';
+import axios from 'axios';
+import BookCard from '../BookCard.vue';
+import BookForm from '../BookForm.vue';
 
 export default {
   name: 'BookSBoard',
@@ -145,13 +145,11 @@ export default {
       this.clickedBook = book
       console.log(this.clickedBook)
     },
-    async submit(submitEvent, bookData) {
+    async submit(imgFile, bookData) {
       const formData = new FormData()
       formData.append('data', JSON.stringify(bookData))
-      console.log(submitEvent.target.file.files[0])
-      formData.append('file', submitEvent.target.file.files[0])
-      await axios
-        .post('http://localhost:3000/api/book/', formData, {
+      formData.append('file', imgFile)
+      await axios.post('http://localhost:3000/api/book/', formData, {
           headers: {
             'Content-Type': `multipart/form-data`
           }
@@ -162,13 +160,12 @@ export default {
       this.emitter.emit('popUpMessage', { message: 'Add book successfully.' })
       this.refreshList()
     },
-    async updateBook(submitEvent, bookData) {
+    async updateBook(imgFile, bookData) {
       const formData = new FormData()
       formData.append('data', JSON.stringify(bookData))
-      console.log(submitEvent.target.file.files[0])
-      formData.append('file', submitEvent.target.file.files[0])
-      await axios
-        .put('http://localhost:3000/api/book/get-one/' + this.clickedBook._id, formData, {
+      console.log(imgFile)
+      formData.append('file', imgFile)
+      await axios.put('http://localhost:3000/api/book/get-one/' + this.clickedBook._id, formData, {
           headers: {
             'Content-Type': `multipart/form-data`
           }

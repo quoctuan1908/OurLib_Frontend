@@ -80,7 +80,7 @@
       </button>
     </div>
 
-    <h1>Top Book</h1>
+    <h1>Best Books For You</h1>
     <VueSkeletonLoader type="image@1" :loading="!this.isReady" height="200px"></VueSkeletonLoader>
     <BookList
       :booksList="this.books.splice(0, 10)"
@@ -91,9 +91,9 @@
 </template>
 
 <script>
-import BookList from '@/components/BookList.vue'
-import BookService from '@/services/book.service'
-import VueSkeletonLoader from 'vue3-skeleton-loader'
+import BookList from '@/components/BookList.vue';
+import BookService from '@/services/book.service';
+import VueSkeletonLoader from 'vue3-skeleton-loader';
 const booksList = []
 
 export default {

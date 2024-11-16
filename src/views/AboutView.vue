@@ -16,7 +16,7 @@
       <div class="col-md-6 context">
         <h1>Our Mission</h1>
         <p>
-          At [Library Name], our mission is to foster a love of reading and lifelong learning by
+          At OurLib, our mission is to foster a love of reading and lifelong learning by
           providing access to diverse resources, programs, and services. We strive to create an
           inclusive community space that empowers individuals, ignites curiosity, and supports
           education for all ages.

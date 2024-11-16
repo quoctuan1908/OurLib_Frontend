@@ -21,7 +21,7 @@
       </button>
 
       <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" v-for="link in this.navbarElements" :key="link">
@@ -52,16 +52,6 @@
         <ul class="navbar-nav mb-2 mb-lg-0">
           <!-- Navbar dropdown -->
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle hidden-arrow"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="fas fa-bell"></i>
-            </a>
             <!-- Dropdown menu -->
             <ul
               class="dropdown-menu dropdown-menu-end notifications-list p-1"
@@ -89,12 +79,12 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i class="fa-solid fa-circle-user"></i>
+              <i class="fa-solid fa-circle-user" v-if="!this.avatar"></i>
+              <img class="avatar" :src="'http://localhost:3000/public/data/uploads/avatar/' + this.avatar" v-else/>
             </a>
             <!-- Dropdown menu -->
             <ul class="dropdown-menu dropdown-menu-end p-1" aria-labelledby="navbarDropdown">
               <li><RouterLink class="dropdown-item" to="/blog">Your Account</RouterLink></li>
-              <li><a class="dropdown-item" href="#">Help</a></li>
               <li>
                 <a class="dropdown-item" @click.prevent="handleLogout" v-show="isLogged">Log Out</a>
               </li>
@@ -111,14 +101,14 @@
 </template>
 
 <script>
-import loginService from '@/services/login.service'
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import loginService from '@/services/login.service';
+import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
 const navbarElements = ref([
+  {link: '/', name: 'Home'},
   { link: '/about', name: 'About' },
   { link: '/books', name: 'Books' },
-  { link: '/contact', name: 'Contact' },
-  { link: '/news', name: 'News' }
+  { link: '/help', name: 'Help'}
 ])
 export default {
   name: 'NavBar',
@@ -127,13 +117,15 @@ export default {
       navbarElements,
       isLogged: false,
       name: null,
+      avatar: null,
       searchQuery: ''
     }
   },
   created() {
     this.emitter.on('logged', (data) => {
       this.isLogged = data.isLogged
-      this.name = data.name
+      this.name = data.name,
+      this.avatar = data.avatar
     })
   },
   mounted() {
@@ -150,14 +142,17 @@ export default {
       if (localStorage.getItem('token')) {
         this.isLogged = true
         this.name = localStorage.getItem('name')
+        this.avatar = localStorage.getItem('avatar')
       } else {
         this.isLogged = false
         this.name = null
+        this.avatar = null
       }
     },
     handleLogout() {
       loginService.logout()
       this.isLogged = false
+      this.avatar = null
       this.$router.push({ name: 'login' })
     },
     handleSubmit() {
@@ -189,5 +184,11 @@ export default {
 }
 .iconCustom {
   color: black;
+}
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 </style>

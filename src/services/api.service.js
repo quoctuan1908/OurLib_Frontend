@@ -10,6 +10,7 @@ export default (baseURL) => {
   })
   instance.interceptors.request.use(
     (config) => {
+      console.log("Interceptor request")
       const token = JSON.parse(localStorage.getItem('token'))
 
       if (token) {
@@ -26,17 +27,16 @@ export default (baseURL) => {
   )
   instance.interceptors.response.use(
     (response) => {
-      console.log('hello')
-
+       console.log("Interceptor response")
       return response
     },
 
     (error) => {
-      if (error.response.status == 401) {
-        localStorage.removeItem('token')
+      if(error.response.status == 403 ||error.response.status == 401) {
+        localStorage.clear()
       }
       return Promise.reject(error)
-    }
+    } 
   )
   return instance
 }

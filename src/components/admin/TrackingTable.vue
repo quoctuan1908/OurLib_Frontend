@@ -36,12 +36,16 @@
             <div>
               <button
                 class="btn btn-success"
-                @click.prevent="this.acceptRequest(record._id)"
-                v-show="!(record.trangthai == 'returned')"
+                @click.prevent="async () => {await this.acceptRequest(record._id); this.refreshBooks()}"
+                v-show="!(record.trangthai == 'returned') && this.acceptRequest !== null"
               >
                 <i class="fa-regular fa-circle-check"></i>
               </button>
-              <button class="btn btn-danger" @click.prevent="this.refuseRequest(record._id)">
+              <button 
+                class="btn btn-danger"
+                @click.prevent="async () => {await this.refuseRequest(record._id); this.refreshBooks()}"
+                v-show="this.refuseRequest !== null && !(record.trangthai == 'borrowing')"
+                >
                 <i class="fa-regular fa-circle-xmark"></i>
               </button>
             </div>
@@ -83,10 +87,17 @@ export default {
           record.masach.toLowerCase().includes(this.filter.toLowerCase()) ||
           record.madocgia.toLowerCase().includes(this.filter.toLowerCase())
       )
+      console.log(this.data)
+    },
+    refreshBooks() {
+      this.filtedData = this.data
+      
     }
   },
   mounted() {
     this.filterData()
+    console.log(new Date())
+    console.log(this.data)
   }
 }
 </script>

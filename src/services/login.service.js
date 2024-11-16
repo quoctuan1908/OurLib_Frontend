@@ -1,7 +1,7 @@
 import createApiClient from '@/services/api.service'
 
 class LoginService {
-  constructor(baseURL = '/api/user/reader') {
+  constructor(baseURL = 'http://localhost:3000/api/user/reader') {
     this.api = createApiClient(baseURL)
   }
   async login(formData) {

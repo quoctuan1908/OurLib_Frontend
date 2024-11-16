@@ -65,7 +65,6 @@
         id="password2"
         v-model="signUpData.confirmPassword"
         placeholder="&#xf023; Type your password"
-        :onchange="checkConfirmPassword"
         required
       />
       <ErrorMessage name="confirmPassword" class="error-message"></ErrorMessage>
@@ -73,16 +72,16 @@
     <div id="message" :class="this.message ? `alert alert-warning` : ''">
       {{ this.message }}
     </div>
-    <button type="submit" class="btn btn-primary" @click.prevent="handleSignUp">Login</button>
-    <button type="button" @click.prevent="gotoLogin">Login</button>
+    <button type="submit" class="btn btn-primary" @click.prevent="handleSignUp">Sign Up</button><br/>
+    <span @click.prevent="gotoLogin" class="link-primary link-custom">Return to Login</span>
   </Form>
 </template>
 
 <script>
-import loginService from '@/services/login.service'
-import { ErrorMessage, Field, Form } from 'vee-validate'
+import loginService from '@/services/login.service';
+import { ErrorMessage, Field, Form } from 'vee-validate';
 
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 export default {
   name: 'UserForm',
@@ -122,6 +121,12 @@ export default {
       formData.append('data', JSON.stringify(this.signUpData))
       let login = await loginService.signup(formData)
       console.log(login)
+      if (login.status == 200) {
+        this.emitter.emit('popUpMessage', { message: 'Create account successfully.!' })
+        this.$router.push({name: 'login'})
+      } else {
+        this.emitter.emit('popUpMessage', { message: 'Fail to create account.' })
+      }
     },
     gotoLogin() {
       this.$router.push({ name: 'login' })
@@ -164,5 +169,9 @@ export default {
 }
 .error-message {
   color: rgb(220, 70, 70);
+}
+.link-custom:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
 </style>

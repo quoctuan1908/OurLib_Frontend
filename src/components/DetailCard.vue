@@ -5,7 +5,7 @@
         <img :src="apiImagePath + this.data.image" class="card-image-top image-size borderCustom" />
         <div class="">
           <button class="col btn-custom" @click.prevent="borrowEvent">Borrow</button>
-          <button class="col btn-custom">Reviews</button>
+          <!-- <button class="col btn-custom">Reviews</button> -->
         </div>
       </div>
       <div class="col-md-8">
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import moment from 'moment';
 
 export default {
   name: 'DetailCard',
